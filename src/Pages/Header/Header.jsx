@@ -6,10 +6,16 @@ import { AuthContext } from "../../Providers/AuthProviders";
 
 const Header = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logoutUser, sweetMessage } = useContext(AuthContext);
 
     const handleLogout = () => {
-
+        logoutUser()
+            .then(() => {
+                sweetMessage("Successfully Logout")
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     return (
