@@ -1,5 +1,5 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 const Header = () => {
@@ -9,10 +9,12 @@ const Header = () => {
             <div className="md:w-5/6 mx-auto bg-primary_btn_color">
                 <Navbar fluid rounded className="bg-primary_btn_color">
                     <Navbar.Toggle className="text-black" />
-                    <h1 className="text-xl font-semibold">Colibri</h1>
+                    <h1 className="text-2xl font-semibold">Colibri</h1>
                     <div className="flex md:order-2">
                         <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
-                        <button className="bg-slate-400 px-5 rounded-lg ml-3">Login</button>
+                        <Link to="/login">
+                            <button className="bg-stone-500 text-white px-5 h-10 rounded-lg ml-3">Login</button>
+                        </Link>
                         <Dropdown arrowIcon={false} inline></Dropdown>
                     </div>
                     <Navbar.Collapse className="md:ml-auto mr-16">
