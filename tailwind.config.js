@@ -13,6 +13,8 @@ export default {
       },
       colors: {
         "primary_text_color": "#000000",
+        "primary_color": "#d2b9a7",
+        "primary_btn_color": "#e7d3c3",
       }
     },
   },
