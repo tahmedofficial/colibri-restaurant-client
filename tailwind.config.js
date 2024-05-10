@@ -13,8 +13,9 @@ export default {
       },
       colors: {
         "primary_text_color": "#000000",
-        "primary_color": "#d2b9a7",
-        "primary_btn_color": "#e7d3c3",
+        "primary_color": "#cfcfc4",
+        "primary_bg_color": "#f2f3f4",
+        "primary_btn_color": "#562932",
       }
     },
   },
