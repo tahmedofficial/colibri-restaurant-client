@@ -5,9 +5,9 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
 
     return (
-        <div>
-            <div className="md:w-5/6 mx-auto">
-                <Navbar fluid rounded>
+        <div className="bg-primary_btn_color">
+            <div className="md:w-5/6 mx-auto bg-primary_btn_color">
+                <Navbar fluid rounded className="bg-primary_btn_color">
                     <Navbar.Toggle className="text-black" />
                     <h1 className="text-xl font-semibold">Colibri</h1>
                     <div className="flex md:order-2">
