@@ -1,8 +1,12 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 
 const Header = () => {
+
+    const { user } = useContext(AuthContext);
 
     return (
         <div className="bg-primary_btn_color">
@@ -11,7 +15,7 @@ const Header = () => {
                     <Navbar.Toggle className="text-black" />
                     <h1 className="text-2xl font-semibold">Colibri</h1>
                     <div className="flex md:order-2">
-                        <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+                        <Avatar alt="User settings" img={user?.photoURL} rounded />
                         <Link to="/login">
                             <button className="bg-stone-500 text-white px-5 h-10 rounded-lg ml-3">Login</button>
                         </Link>
