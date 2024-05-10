@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import { Bounce, toast } from "react-toastify";
 import Swal from "sweetalert2";
@@ -52,6 +52,11 @@ const AuthProviders = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
+    const loginUser = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
@@ -72,6 +77,7 @@ const AuthProviders = ({ children }) => {
         sweetMessage,
         setUser,
         registerUser,
+        loginUser,
     }
 
     return (

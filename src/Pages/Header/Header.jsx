@@ -8,6 +8,10 @@ const Header = () => {
 
     const { user } = useContext(AuthContext);
 
+    const handleLogout = () => {
+
+    }
+
     return (
         <div className="bg-primary_btn_color">
             <div className="md:w-5/6 mx-auto bg-primary_btn_color">
@@ -16,9 +20,12 @@ const Header = () => {
                     <h1 className="text-2xl font-semibold">Colibri</h1>
                     <div className="flex md:order-2">
                         <Avatar alt="User settings" img={user?.photoURL} rounded />
-                        <Link to="/login">
-                            <button className="bg-stone-500 text-white px-5 h-10 rounded-lg ml-3">Login</button>
-                        </Link>
+                        {
+                            user ? <button onClick={handleLogout} className="bg-stone-500 text-white px-5 h-10 rounded-lg ml-3">Logout</button> :
+                                <Link to="/login">
+                                    <button className="bg-stone-500 text-white px-5 h-10 rounded-lg ml-3">Login</button>
+                                </Link>
+                        }
                         <Dropdown arrowIcon={false} inline></Dropdown>
                     </div>
                     <Navbar.Collapse className="md:ml-auto mr-16">
