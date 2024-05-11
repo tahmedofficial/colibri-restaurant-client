@@ -75,7 +75,7 @@ const AuthProviders = ({ children }) => {
     }, [])
 
     useEffect(() => {
-        axios.get("http://localhost:5000/foodItem")
+        axios.get("http://localhost:5000/food")
             .then(res => {
                 setFoods(res.data);
             })

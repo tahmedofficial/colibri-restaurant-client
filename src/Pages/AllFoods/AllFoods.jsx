@@ -1,19 +1,35 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import AllFoodsCard from "../AllFoodsCard/AllFoodsCard";
 import titleImg from "../../assets/images/titleBg.jpg";
 import { FaArrowRightLong } from "react-icons/fa6";
+import axios from "axios";
+import { useLoaderData } from "react-router-dom";
 
 
 const AllFoods = () => {
 
-    const { foods } = useContext(AuthContext);
+    const { errorMessage } = useContext(AuthContext);
+    const foods = useLoaderData();
+    const [foodItems, setFoodItems] = useState(foods);
+
 
     const handleSearch = (event) => {
         event.preventDefault();
         const form = event.target;
         const search = form.search.value;
-        console.log(search);
+
+        axios.get(`http://localhost:5000/searchedFood?foodItem=${search}`)
+            .then(res => {
+                if (res.data.length > 0) {
+                    setFoodItems(res.data);
+                }
+                else {
+                    setFoodItems([]);
+                    errorMessage("No data found");
+                }
+                console.log(res.data);
+            })
     }
 
     return (
@@ -32,7 +48,7 @@ const AllFoods = () => {
 
                 <div className="flex justify-center mb-10">
                     <form onSubmit={handleSearch} className="flex">
-                        <input className="border-0 text-white placeholder-white bg-primary_color rounded-l-lg w-full lg:w-96" type="text" name="search" placeholder="Search hear" />
+                        <input className="border-0 text-white placeholder-white bg-primary_color rounded-l-lg w-full lg:w-96" type="text" name="search" placeholder="Search hear" required />
                         <button className="bg-primary_btn_color rounded-r-lg hover:bg-primary_color duration-300 text-white text-lg px-5">
                             <FaArrowRightLong />
                         </button>
@@ -41,9 +57,10 @@ const AllFoods = () => {
 
                 <div className="grid gap-5 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
                     {
-                        foods.map(food => <AllFoodsCard key={food._id} food={food}></AllFoodsCard>)
+                        foodItems.map(food => <AllFoodsCard key={food._id} food={food}></AllFoodsCard>)
                     }
                 </div>
+
             </div>
         </div>
     );
