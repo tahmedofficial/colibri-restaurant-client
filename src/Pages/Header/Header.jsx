@@ -32,11 +32,13 @@ const Header = () => {
                                 <Avatar className="border-2 rounded-full border-primary_color" alt="User settings" img={user?.photoURL} rounded />
                             }
                         >
-                            <Dropdown.Item>My added food items</Dropdown.Item>
-                            <Dropdown.Divider />
-                            <Dropdown.Item>Add a food item</Dropdown.Item>
-                            <Dropdown.Divider />
-                            <Dropdown.Item>My ordered food items</Dropdown.Item>
+                            <div className="flex flex-col gap-3 p-3">
+                                <Link to={`/myAddedFood/${user?.email}`}>
+                                    <button className="bg-primary_btn_color text-white px-5 py-1 rounded-lg border border-primary_btn_color hover:bg-opacity-0 hover:text-primary_btn_color duration-300">My added food items</button>
+                                </Link>
+                                <button className="bg-primary_btn_color text-white px-5 py-1 rounded-lg border border-primary_btn_color hover:bg-opacity-0 hover:text-primary_btn_color duration-300">Add a food item</button>
+                                <button className="bg-primary_btn_color text-white px-5 py-1 rounded-lg border border-primary_btn_color hover:bg-opacity-0 hover:text-primary_btn_color duration-300">My ordered food items</button>
+                            </div>
                         </Dropdown>
                         {
                             user ? <button onClick={handleLogout} className="bg-primary_btn_color text-white px-5 h-10 rounded-lg ml-3 hover:bg-primary_color duration-300">Logout</button> :
