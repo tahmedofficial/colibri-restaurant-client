@@ -65,7 +65,7 @@ const Register = () => {
                     <h3 className="mb-2 font-medium text-black">Password</h3>
                     <input className="h-10 w-full border-0 outline-none pl-3 rounded-lg" type="password" name="password" placeholder="Enter Your Password" required />
                 </div>
-                <button className="bg-primary_btn_color h-10 rounded-lg text-white text-lg">Register</button>
+                <button className="bg-primary_btn_color h-10 rounded-lg text-white text-lg hover:bg-primary_color duration-300">Register</button>
                 <div className="flex items-center font-medium mx-auto">
                     <h3>Already Register</h3>
                     <Link to="/login">

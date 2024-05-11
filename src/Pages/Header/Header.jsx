@@ -27,18 +27,18 @@ const Header = () => {
                     <div className="flex md:order-2">
                         <Avatar className="border-2 rounded-full border-primary_color" alt="User settings" img={user?.photoURL} rounded />
                         {
-                            user ? <button onClick={handleLogout} className="bg-primary_btn_color text-white px-5 h-10 rounded-lg ml-3">Logout</button> :
+                            user ? <button onClick={handleLogout} className="bg-primary_btn_color text-white px-5 h-10 rounded-lg ml-3 hover:bg-primary_color duration-300">Logout</button> :
                                 <Link to="/login">
-                                    <button className="bg-primary_btn_color text-white px-5 h-10 rounded-lg ml-3">Login</button>
+                                    <button className="bg-primary_btn_color text-white px-5 h-10 rounded-lg ml-3 hover:bg-primary_color duration-300">Login</button>
                                 </Link>
                         }
                         <Dropdown arrowIcon={false} inline></Dropdown>
                     </div>
                     <Navbar.Collapse className="md:ml-auto mr-16">
-                        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-8">
-                            <NavLink to="/" className={({ isActive }) => isActive ? "text-black border border-primary_btn_color px-5 py-1 rounded-lg md:text-lg font-normal" : "md:text-lg font-normal"}>Home</NavLink>
-                            <NavLink to="/allFoods" className={({ isActive }) => isActive ? "text-black border border-primary_btn_color px-5 py-1 rounded-lg md:text-lg font-normal" : "md:text-lg font-normal"}>All Foods</NavLink>
-                            <NavLink to="/gallery" className={({ isActive }) => isActive ? "text-black border border-primary_btn_color px-5 py-1 rounded-lg md:text-lg font-normal" : "md:text-lg font-normal"}>Gallery</NavLink>
+                        <div className="flex flex-col md:flex-row md:items-center gap-2">
+                            <NavLink to="/" className={({ isActive }) => isActive ? "text-black border border-primary_btn_color px-5 py-1 rounded-lg md:text-lg font-normal hover:bg-primary_btn_color hover:text-white duration-300" : "md:text-lg font-normal hover:bg-primary_btn_color hover:text-white duration-300 px-5 py-1 rounded-lg"}>Home</NavLink>
+                            <NavLink to="/allFoods" className={({ isActive }) => isActive ? "text-black border border-primary_btn_color px-5 py-1 rounded-lg md:text-lg font-normal hover:bg-primary_btn_color hover:text-white duration-300" : "md:text-lg font-normal hover:bg-primary_btn_color hover:text-white duration-300 px-5 py-1 rounded-lg"}>All Foods</NavLink>
+                            <NavLink to="/gallery" className={({ isActive }) => isActive ? "text-black border border-primary_btn_color px-5 py-1 rounded-lg md:text-lg font-normal hover:bg-primary_btn_color hover:text-white duration-300" : "md:text-lg font-normal hover:bg-primary_btn_color hover:text-white duration-300 px-5 py-1 rounded-lg"}>Gallery</NavLink>
                         </div>
                     </Navbar.Collapse>
                 </Navbar>

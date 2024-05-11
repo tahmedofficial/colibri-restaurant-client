@@ -4,7 +4,7 @@ import { AuthContext } from "../../Providers/AuthProviders";
 
 const Login = () => {
 
-    const { loginUser, sweetMessage } = useContext(AuthContext);
+    const { loginUser, sweetMessage, errorMessage } = useContext(AuthContext);
     const locattion = useLocation();
     const navigate = useNavigate();
 
@@ -20,6 +20,7 @@ const Login = () => {
                 navigate(locattion?.state ? locattion?.state : "/")
             })
             .catch(error => {
+                errorMessage("Invalid email or password")
                 console.log(error);
             })
     }
@@ -37,7 +38,7 @@ const Login = () => {
                     <h3 className="mb-2 font-medium text-black">Password</h3>
                     <input className="h-10 w-full border-0 outline-none pl-3 rounded-lg" type="password" name="password" placeholder="Enter Your Password" required />
                 </div>
-                <button className="bg-primary_btn_color h-10 rounded-lg text-white text-lg">Login</button>
+                <button className="bg-primary_btn_color h-10 rounded-lg text-white text-lg hover:bg-primary_color duration-300">Login</button>
                 <div className="flex items-center font-medium mx-auto">
                     <h3>Do not have account?</h3>
                     <Link to="/register">
