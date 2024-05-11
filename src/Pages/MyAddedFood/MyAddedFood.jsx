@@ -1,12 +1,11 @@
 import { Table } from "flowbite-react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
 
 
 const MyAddedFood = () => {
 
     const myFoodItems = useLoaderData();
-    console.log(myFoodItems);
 
     return (
         <div className="md:w-5/6 mx-auto mt-16">
@@ -32,7 +31,9 @@ const MyAddedFood = () => {
                                     <Table.Cell>{myFood.foodOrigin}</Table.Cell>
                                     <Table.Cell>{myFood.price}</Table.Cell>
                                     <Table.Cell>
-                                        <button className="text-xl bg-primary_btn_color text-white p-2 rounded-lg hover:bg-primary_color duration-300"><MdEdit /></button>
+                                        <Link to={`/updatePage/${myFood._id}`}>
+                                            <button className="text-xl bg-primary_btn_color text-white p-2 rounded-lg hover:bg-primary_color duration-300"><MdEdit /></button>
+                                        </Link>
                                     </Table.Cell>
                                 </Table.Row>
                             )

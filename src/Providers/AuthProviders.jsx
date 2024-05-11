@@ -12,6 +12,7 @@ const AuthProviders = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [control, setControl] = useState(true);
     const [foods, setFoods] = useState([]);
 
     const successMessage = (message) => toast.success(message, {
@@ -72,7 +73,7 @@ const AuthProviders = ({ children }) => {
         return () => {
             unsubscribe();
         }
-    }, [])
+    }, [control])
 
     useEffect(() => {
         axios.get("http://localhost:5000/food")
@@ -85,6 +86,7 @@ const AuthProviders = ({ children }) => {
         user,
         loading,
         foods,
+        control,
         successMessage,
         errorMessage,
         sweetMessage,
@@ -92,6 +94,7 @@ const AuthProviders = ({ children }) => {
         registerUser,
         loginUser,
         logoutUser,
+        setControl,
     }
 
     return (
