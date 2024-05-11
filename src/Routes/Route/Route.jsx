@@ -5,6 +5,9 @@ import AllFoods from "../../Pages/AllFoods/AllFoods";
 import Gallery from "../../Pages/Gallery/Gallery";
 import Register from "../../Pages/Register/Register";
 import Login from "../../Pages/Login/Login";
+import SingleFood from "../../Pages/SingleFood/SingleFood";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Purchase from "../../Pages/Purchase/Purchase";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +22,16 @@ const router = createBrowserRouter([
                 path: "/allFoods",
                 element: <AllFoods></AllFoods>,
                 loader: () => fetch("http://localhost:5000/food")
+            },
+            {
+                path: "/singleFood/:id",
+                element: <SingleFood></SingleFood>,
+                loader: ({ params }) => fetch(`http://localhost:5000/food/${params.id}`)
+            },
+            {
+                path: "/purchase/:id",
+                element: <PrivateRoute><Purchase></Purchase></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/food/${params.id}`)
             },
             {
                 path: "/gallery",

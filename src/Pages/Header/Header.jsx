@@ -25,14 +25,25 @@ const Header = () => {
                     <Navbar.Toggle className="text-black" />
                     <h1 className="text-3xl font-bold text-orange-800"><span className="text-primary_btn_color">Col</span>ibri</h1>
                     <div className="flex md:order-2">
-                        <Avatar className="border-2 rounded-full border-primary_color" alt="User settings" img={user?.photoURL} rounded />
+                        <Dropdown
+                            arrowIcon={false}
+                            inline
+                            label={
+                                <Avatar className="border-2 rounded-full border-primary_color" alt="User settings" img={user?.photoURL} rounded />
+                            }
+                        >
+                            <Dropdown.Item>My added food items</Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item>Add a food item</Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item>My ordered food items</Dropdown.Item>
+                        </Dropdown>
                         {
                             user ? <button onClick={handleLogout} className="bg-primary_btn_color text-white px-5 h-10 rounded-lg ml-3 hover:bg-primary_color duration-300">Logout</button> :
                                 <Link to="/login">
                                     <button className="bg-primary_btn_color text-white px-5 h-10 rounded-lg ml-3 hover:bg-primary_color duration-300">Login</button>
                                 </Link>
                         }
-                        <Dropdown arrowIcon={false} inline></Dropdown>
                     </div>
                     <Navbar.Collapse className="md:ml-auto mr-16">
                         <div className="flex flex-col md:flex-row md:items-center gap-2">

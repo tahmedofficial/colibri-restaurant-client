@@ -12,7 +12,7 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
 
     if (loading) {
-        return <Spinner className='flex mx-auto' aria-label="Extra large spinner example" size="xl" />
+        return <Spinner className='flex mx-auto mt-20' aria-label="Extra large spinner example" size="xl" />
     }
 
     if (user) {
