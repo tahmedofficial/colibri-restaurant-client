@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import axios from "axios";
@@ -6,8 +6,9 @@ import axios from "axios";
 const Purchase = () => {
 
     const singleFood = useLoaderData();
-    const { user, setControl, control, sweetMessage } = useContext(AuthContext);
+    const { user, setControl, control, sweetMessage, errorMessage } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [controlButton, setControlButton] = useState(false);
     const { _id, foodName, price, image, quantity, foodCategory, totalOrders } = singleFood;
     const name = user?.displayName;
     const email = user?.email;
@@ -19,7 +20,19 @@ const Purchase = () => {
 
     const handlePurchase = () => {
         const data = { totalOrders };
+        const quantityData = { quantity };
         const orderedInfo = { foodName, price, image, name, email, myDate, time }
+
+        if (user?.email === singleFood?.email) {
+            errorMessage("You cannot purchase your own food")
+            return
+        }
+
+        if (quantity === "0") {
+            setControlButton(true);
+            errorMessage("This food is not available")
+            return
+        }
 
         axios.put(`http://localhost:5000/countOrder/${_id}`, data)
             .then(res => {
@@ -27,9 +40,14 @@ const Purchase = () => {
                     axios.post("http://localhost:5000/foodOrder", orderedInfo)
                         .then(res => {
                             if (res.data.insertedId) {
-                                setControl(!control);
-                                navigate("/allFoods");
-                                sweetMessage("Successfully Purchase")
+                                axios.put(`http://localhost:5000/countQuantity/${_id}`, quantityData)
+                                    .then(res => {
+                                        if (res.data.modifiedCount > 0) {
+                                            setControl(!control);
+                                            navigate("/allFoods");
+                                            sweetMessage("Successfully Purchase")
+                                        }
+                                    })
                             }
                         })
                 }
@@ -65,10 +83,11 @@ const Purchase = () => {
                         <h3 className="text-lg"><span className="font-bold">Date: </span>{myDate}</h3>
                         <h3 className="text-lg"><span className="font-bold">Time: </span>{time}</h3>
                     </div>
-                    <button onClick={handlePurchase} className="bg-primary_btn_color my-5 h-10 w-full rounded-lg text-lg font-medium text-white hover:bg-primary_color duration-300">Purchase</button>
+                    <button onClick={handlePurchase} disabled={controlButton} className={`${controlButton ? "opacity-40" : ""} bg-primary_btn_color my-5 h-10 w-full rounded-lg text-lg font-medium text-white hover:bg-primary_color duration-300`}>Purchase</button>
                 </div>
 
             </div>
+
         </div>
     );
 };
