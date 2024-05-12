@@ -56,8 +56,9 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><AddFood></AddFood></PrivateRoute>
             },
             {
-                path: "/myOrderedFood",
-                element: <MyOrderedFood></MyOrderedFood>
+                path: "/myOrderedFood/:email",
+                element: <PrivateRoute><MyOrderedFood></MyOrderedFood></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/foodOrder/${params.email}`)
             },
             {
                 path: "/login",

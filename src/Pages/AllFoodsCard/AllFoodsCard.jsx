@@ -12,7 +12,7 @@ const AllFoodsCard = ({ food }) => {
             <div className="my-8 text-lg">
                 <h1><span className="font-bold">Food Name:</span> {foodName}</h1>
                 <h3><span className="font-bold">Category:</span> {foodCategory}</h3>
-                <h3> <span className="font-bold">Price:</span> {price}</h3>
+                <h3> <span className="font-bold">Price:</span> ${price}</h3>
             </div>
             <Link to={`/singleFood/${_id}`}>
                 <button className="bg-primary_btn_color text-white px-5 h-10 rounded-lg hover:bg-primary_color duration-300">View Details</button>

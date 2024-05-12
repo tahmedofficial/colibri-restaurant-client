@@ -4,7 +4,6 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import auth from "../firebase/firebase.config";
 import { Bounce, toast } from "react-toastify";
 import Swal from "sweetalert2";
-import axios from "axios";
 
 export const AuthContext = createContext(null)
 
@@ -12,20 +11,8 @@ const AuthProviders = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [control, setControl] = useState(true);
-    const [foods, setFoods] = useState([]);
+    const [control, setControl] = useState(false);
 
-    const successMessage = (message) => toast.success(message, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-    });
 
     const errorMessage = (message) => {
         toast.error(message, {
@@ -75,19 +62,10 @@ const AuthProviders = ({ children }) => {
         }
     }, [control])
 
-    useEffect(() => {
-        axios.get("http://localhost:5000/food")
-            .then(res => {
-                setFoods(res.data);
-            })
-    }, [])
-
     const authInfo = {
         user,
         loading,
-        foods,
         control,
-        successMessage,
         errorMessage,
         sweetMessage,
         setUser,

@@ -39,7 +39,7 @@ const Header = () => {
                                 <Link to="/addFood">
                                     <button className="bg-primary_btn_color w-full text-white px-5 py-1 rounded-lg border border-primary_btn_color hover:bg-opacity-0 hover:text-primary_btn_color duration-300">Add food item</button>
                                 </Link>
-                                <Link to="/myOrderedFood">
+                                <Link to={`/myOrderedFood/${user?.email}`}>
                                     <button className="bg-primary_btn_color w-full text-white px-5 py-1 rounded-lg border border-primary_btn_color hover:bg-opacity-0 hover:text-primary_btn_color duration-300">My ordered food items</button>
                                 </Link>
                             </div>

@@ -29,7 +29,7 @@ const MyAddedFood = () => {
                                     <Table.Cell>{myFood.foodName}</Table.Cell>
                                     <Table.Cell>{myFood.foodCategory}</Table.Cell>
                                     <Table.Cell>{myFood.foodOrigin}</Table.Cell>
-                                    <Table.Cell>{myFood.price}</Table.Cell>
+                                    <Table.Cell>${myFood.price}</Table.Cell>
                                     <Table.Cell>
                                         <Link to={`/updatePage/${myFood._id}`}>
                                             <button className="text-xl bg-primary_btn_color text-white p-2 rounded-lg hover:bg-primary_color duration-300"><MdEdit /></button>
