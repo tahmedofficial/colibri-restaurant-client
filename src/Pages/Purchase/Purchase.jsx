@@ -1,15 +1,41 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
+import axios from "axios";
 
 const Purchase = () => {
 
     const singleFood = useLoaderData();
-    const { user } = useContext(AuthContext);
+    const { user, setControl, control, sweetMessage } = useContext(AuthContext);
+    const navigate = useNavigate();
     const { _id, foodName, price, image, quantity, foodCategory, totalOrders } = singleFood;
+    const name = user?.displayName;
+    const email = user?.email;
     const date = new Date()
     const dateStr = date.toLocaleString()
-    const myDate = dateStr.split(",");
+    const dateTime = dateStr.split(",");
+    const myDate = dateTime[0];
+    const time = dateTime[1];
+
+    const handlePurchase = () => {
+        const data = { totalOrders };
+        const orderedInfo = { foodName, price, image, name, email, myDate, time }
+
+        axios.put(`http://localhost:5000/countOrder/${_id}`, data)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    axios.post("http://localhost:5000/foodOrder", orderedInfo)
+                        .then(res => {
+                            if (res.data.insertedId) {
+                                setControl(!control);
+                                navigate("/allFoods");
+                                sweetMessage("Successfully Purchase")
+                            }
+                        })
+                }
+            })
+
+    }
 
     return (
         <div className="md:w-5/6 lg:w-4/6 mx-auto mt-10 md:mt-16">
@@ -34,12 +60,12 @@ const Purchase = () => {
                 <div className="col-span-1">
                     <h1 className="text-2xl font-medium text-center">Ordered Info</h1>
                     <div className="mt-5">
-                        <h3 className="text-lg"><span className="font-bold">Name: </span>{user?.displayName}</h3>
-                        <h3 className="text-lg"><span className="font-bold">Email: </span>{user?.email}</h3>
-                        <h3 className="text-lg"><span className="font-bold">Date: </span>{myDate[0]}</h3>
-                        <h3 className="text-lg"><span className="font-bold">Time: </span>{myDate[1]}</h3>
+                        <h3 className="text-lg"><span className="font-bold">Name: </span>{name}</h3>
+                        <h3 className="text-lg"><span className="font-bold">Email: </span>{email}</h3>
+                        <h3 className="text-lg"><span className="font-bold">Date: </span>{myDate}</h3>
+                        <h3 className="text-lg"><span className="font-bold">Time: </span>{time}</h3>
                     </div>
-                    <button className="bg-primary_btn_color my-5 h-10 w-full rounded-lg text-lg font-medium text-white hover:bg-primary_color duration-300">Purchase</button>
+                    <button onClick={handlePurchase} className="bg-primary_btn_color my-5 h-10 w-full rounded-lg text-lg font-medium text-white hover:bg-primary_color duration-300">Purchase</button>
                 </div>
 
             </div>

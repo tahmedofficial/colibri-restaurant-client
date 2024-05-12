@@ -22,7 +22,7 @@ const SingleFood = () => {
                 </div>
                 <h3 className="shadow-inner rounded-lg p-2"><span className="font-bold">Description:</span> {description}</h3>
                 <Link to={`/purchase/${_id}`}>
-                    <button className="bg-primary_btn_color font-medium mt-4 text-white px-5 h-10 rounded-lg hover:bg-primary_color duration-300">Purchase</button>
+                    <button className="bg-primary_btn_color font-medium mt-4 text-white px-5 h-10 rounded-lg hover:bg-primary_color duration-300">Purchase Now</button>
                 </Link>
             </div>
         </div>
