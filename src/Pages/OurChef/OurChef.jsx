@@ -4,7 +4,7 @@ import chef3 from "../../assets/images/masterChef3.webp";
 
 const OurChef = () => {
     return (
-        <div className="mt-10">
+        <div className="mt-10 md:w-5/6 mx-auto">
             <h1 className="font-semibold text-primary_btn_color text-center py-10 text-4xl lg:text-5xl">Master Chef</h1>
 
             <div className="grid md:grid-cols-2">
