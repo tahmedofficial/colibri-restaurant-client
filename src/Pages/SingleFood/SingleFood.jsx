@@ -17,7 +17,7 @@ const SingleFood = () => {
                     <h3><span className="font-bold">Food Origin:</span> {foodOrigin}</h3>
                 </div>
                 <div className="flex gap-10 shadow-inner text-lg rounded-lg p-2">
-                    <h3><span className="font-bold">Price:</span> {price}</h3>
+                    <h3><span className="font-bold">Price:</span> ${price}</h3>
                     <h3><span className="font-bold">Made By:</span> {madeBy}</h3>
                 </div>
                 <h3 className="shadow-inner rounded-lg p-2"><span className="font-bold">Description:</span> {description}</h3>

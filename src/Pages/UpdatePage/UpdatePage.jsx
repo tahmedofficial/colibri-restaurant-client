@@ -23,7 +23,7 @@ const UpdatePage = () => {
         const quantity = form.quantity.value;
         const foodData = { image, foodName, price, madeBy, foodCategory, description, foodOrigin, quantity };
 
-        axios.put(`http://localhost:5000/food/${_id}`, foodData)
+        axios.put(`https://colibri-restaurant-server.vercel.app/food/${_id}`, foodData)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     form.reset();

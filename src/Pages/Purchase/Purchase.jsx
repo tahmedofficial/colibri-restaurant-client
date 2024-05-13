@@ -34,13 +34,13 @@ const Purchase = () => {
             return
         }
 
-        axios.put(`http://localhost:5000/countOrder/${_id}`, data)
+        axios.put(`https://colibri-restaurant-server.vercel.app/countOrder/${_id}`, data)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
-                    axios.post("http://localhost:5000/foodOrder", orderedInfo)
+                    axios.post("https://colibri-restaurant-server.vercel.app/foodOrder", orderedInfo)
                         .then(res => {
                             if (res.data.insertedId) {
-                                axios.put(`http://localhost:5000/countQuantity/${_id}`, quantityData)
+                                axios.put(`https://colibri-restaurant-server.vercel.app/countQuantity/${_id}`, quantityData)
                                     .then(res => {
                                         if (res.data.modifiedCount > 0) {
                                             setControl(!control);

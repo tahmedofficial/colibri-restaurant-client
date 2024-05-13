@@ -8,7 +8,7 @@ const AllFoodsCard = ({ food }) => {
     // console.log(food);
     return (
         <div className="shadow-md border-t m-5 md:m-0 p-5 rounded-xl">
-            <img className="rounded-xl md:h-44 lg:h-60" src={image} alt="" />
+            <img className="rounded-xl w-full md:h-44 lg:h-60" src={image} alt="" />
             <div className="my-8 text-lg">
                 <h1><span className="font-bold">Food Name:</span> {foodName}</h1>
                 <h3><span className="font-bold">Category:</span> {foodCategory}</h3>

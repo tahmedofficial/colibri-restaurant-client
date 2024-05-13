@@ -25,17 +25,17 @@ const router = createBrowserRouter([
             {
                 path: "/allFoods",
                 element: <AllFoods></AllFoods>,
-                loader: () => fetch("http://localhost:5000/food")
+                loader: () => fetch("https://colibri-restaurant-server.vercel.app/food")
             },
             {
                 path: "/singleFood/:id",
                 element: <SingleFood></SingleFood>,
-                loader: ({ params }) => fetch(`http://localhost:5000/food/${params.id}`)
+                loader: ({ params }) => fetch(`https://colibri-restaurant-server.vercel.app/food/${params.id}`)
             },
             {
                 path: "/purchase/:id",
                 element: <PrivateRoute><Purchase></Purchase></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/food/${params.id}`)
+                loader: ({ params }) => fetch(`https://colibri-restaurant-server.vercel.app/food/${params.id}`)
             },
             {
                 path: "/gallery",
@@ -44,12 +44,12 @@ const router = createBrowserRouter([
             {
                 path: "/myAddedFood/:email",
                 element: <PrivateRoute><MyAddedFood></MyAddedFood></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/myFood/${params.email}`)
+                loader: ({ params }) => fetch(`https://colibri-restaurant-server.vercel.app/myFood/${params.email}`)
             },
             {
                 path: "/updatePage/:id",
                 element: <PrivateRoute><UpdatePage></UpdatePage></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/food/${params.id}`)
+                loader: ({ params }) => fetch(`https://colibri-restaurant-server.vercel.app/food/${params.id}`)
             },
             {
                 path: "/addFood",
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
             {
                 path: "/myOrderedFood/:email",
                 element: <PrivateRoute><MyOrderedFood></MyOrderedFood></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/foodOrder/${params.email}`)
+                loader: ({ params }) => fetch(`https://colibri-restaurant-server.vercel.app/foodOrder/${params.email}`)
             },
             {
                 path: "/login",

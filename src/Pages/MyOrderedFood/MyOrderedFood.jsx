@@ -26,7 +26,7 @@ const MyOrderedFood = () => {
             confirmButtonText: "Delete"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/foodOrder/${id}`)
+                axios.delete(`https://colibri-restaurant-server.vercel.app/foodOrder/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             console.log(res.data);

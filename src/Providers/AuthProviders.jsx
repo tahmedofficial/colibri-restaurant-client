@@ -12,6 +12,8 @@ const AuthProviders = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [control, setControl] = useState(false);
+    const [feedbackData, setFeedbackData] = useState([]);
+
 
 
     const errorMessage = (message) => {
@@ -60,12 +62,21 @@ const AuthProviders = ({ children }) => {
         return () => {
             unsubscribe();
         }
+    }, [])
+
+    useEffect(() => {
+        fetch("https://colibri-restaurant-server.vercel.app/feedback")
+            .then(res => res.json())
+            .then(data => {
+                setFeedbackData(data)
+            })
     }, [control])
 
     const authInfo = {
         user,
         loading,
         control,
+        feedbackData,
         errorMessage,
         sweetMessage,
         setUser,
