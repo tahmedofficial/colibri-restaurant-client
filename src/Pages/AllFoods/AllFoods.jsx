@@ -4,6 +4,7 @@ import AllFoodsCard from "../AllFoodsCard/AllFoodsCard";
 import titleImg from "../../assets/images/titleBg.jpg";
 import { FaArrowRightLong } from "react-icons/fa6";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 
 const AllFoods = () => {
@@ -32,6 +33,9 @@ const AllFoods = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Colibri | All Foods</title>
+            </Helmet>
             <div className="relative flex justify-center items-center">
                 <div className="bg-primary_bg_color w-full">
                     <img className="w-full md:h-48 lg:h-80 pt-10 mix-blend-multiply" src={titleImg} alt="" />

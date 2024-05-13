@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
+import { Helmet } from "react-helmet-async";
 
 
 const AddFood = () => {
@@ -36,6 +37,9 @@ const AddFood = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Colibri | Add Food</title>
+            </Helmet>
             <h1 className="font-semibold text-center py-16 text-4xl">Add Food Item</h1>
 
             <form onSubmit={handleAddFood} className="flex flex-col gap-5 bg-primary_bg_color mx-3  p-10 md:w-4/6 md:mx-auto md:px-28 md:py-20 lg:px-44 rounded-2xl">

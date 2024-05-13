@@ -4,6 +4,7 @@ import Modal from "../Modal/Modal";
 import { Navigate, useLocation } from "react-router-dom";
 import { Rating } from "flowbite-react";
 import { AuthContext } from "../../Providers/AuthProviders";
+import { Helmet } from "react-helmet-async";
 
 const Gallery = () => {
 
@@ -20,6 +21,9 @@ const Gallery = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Colibri | Gallery</title>
+            </Helmet>
             <div className="relative flex justify-center items-center">
                 <div className="bg-primary_bg_color w-full">
                     <img className="w-full md:h-48 lg:h-80 pt-10 mix-blend-multiply" src={titleImg} alt="" />

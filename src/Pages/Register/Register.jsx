@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
 
@@ -47,6 +48,9 @@ const Register = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Colibri | Register</title>
+            </Helmet>
             <h1 className="font-semibold text-center text-black py-20 text-4xl">Register Now</h1>
             <form onSubmit={handleRegister} className="flex flex-col gap-5 bg-primary_bg_color mx-3  p-10 md:w-4/6 md:mx-auto md:px-28 md:py-20 lg:px-44 rounded-2xl">
                 <div>

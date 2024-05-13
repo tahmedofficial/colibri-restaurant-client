@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const MyOrderedFood = () => {
@@ -47,6 +48,9 @@ const MyOrderedFood = () => {
 
     return (
         <div className="md:w-5/6 mx-auto mt-16">
+            <Helmet>
+                <title>Colibri | My Ordered Food</title>
+            </Helmet>
             <div className="overflow-x-auto">
                 <Table hoverable>
                     <Table.Head>

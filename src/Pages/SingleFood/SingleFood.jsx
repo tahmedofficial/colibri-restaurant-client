@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link, useLoaderData } from "react-router-dom";
 
 const SingleFood = () => {
@@ -7,6 +8,9 @@ const SingleFood = () => {
 
     return (
         <div className="md:w-4/6 mx-auto grid gap-5 md:grid-cols-2 p-5 md:p-0 mt-16">
+            <Helmet>
+                <title>Colibri | Single Food</title>
+            </Helmet>
             <div>
                 <img className="rounded-xl" src={image} alt="" />
             </div>

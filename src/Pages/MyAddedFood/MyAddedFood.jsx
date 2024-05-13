@@ -1,6 +1,7 @@
 import { Table } from "flowbite-react";
 import { Link, useLoaderData } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 
 const MyAddedFood = () => {
@@ -9,6 +10,9 @@ const MyAddedFood = () => {
 
     return (
         <div className="md:w-5/6 mx-auto mt-16">
+            <Helmet>
+                <title>Colibri | My Added Food</title>
+            </Helmet>
             <div className="overflow-x-auto">
                 <Table hoverable>
                     <Table.Head>
