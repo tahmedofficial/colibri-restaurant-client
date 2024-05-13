@@ -24,8 +24,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/allFoods",
-                element: <AllFoods></AllFoods>,
-                loader: () => fetch("https://colibri-restaurant-server.vercel.app/food")
+                element: <AllFoods></AllFoods>
             },
             {
                 path: "/singleFood/:id",
@@ -56,9 +55,8 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><AddFood></AddFood></PrivateRoute>
             },
             {
-                path: "/myOrderedFood/:email",
-                element: <PrivateRoute><MyOrderedFood></MyOrderedFood></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://colibri-restaurant-server.vercel.app/foodOrder/${params.email}`)
+                path: "/myOrderedFood",
+                element: <PrivateRoute><MyOrderedFood></MyOrderedFood></PrivateRoute>
             },
             {
                 path: "/login",

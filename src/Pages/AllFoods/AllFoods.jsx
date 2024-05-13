@@ -4,13 +4,11 @@ import AllFoodsCard from "../AllFoodsCard/AllFoodsCard";
 import titleImg from "../../assets/images/titleBg.jpg";
 import { FaArrowRightLong } from "react-icons/fa6";
 import axios from "axios";
-import { useLoaderData } from "react-router-dom";
 
 
 const AllFoods = () => {
 
-    const { errorMessage } = useContext(AuthContext);
-    const foods = useLoaderData();
+    const { foods, errorMessage } = useContext(AuthContext);
     const [foodItems, setFoodItems] = useState(foods);
 
 

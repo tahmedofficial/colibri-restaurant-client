@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const AllFoodsCard = ({ food }) => {
 
     const { _id, foodName, image, price, foodCategory } = food;
-    // console.log(food);
+
     return (
         <div className="shadow-md border-t m-5 md:m-0 p-5 rounded-xl">
             <img className="rounded-xl w-full md:h-44 lg:h-60" src={image} alt="" />

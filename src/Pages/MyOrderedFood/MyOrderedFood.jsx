@@ -1,20 +1,27 @@
 import axios from "axios";
 import { Table } from "flowbite-react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
-import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 
 
 const MyOrderedFood = () => {
 
-    const myOrderedData = useLoaderData();
-    const [orderedData, setOrderedData] = useState(myOrderedData);
-    const { sweetMessage } = useContext(AuthContext);
+    const { user, sweetMessage } = useContext(AuthContext);
+    const [orderedData, setOrderedData] = useState([]);
+    const [reload, setReload] = useState(false);
+
+    useEffect(() => {
+        fetch(`https://colibri-restaurant-server.vercel.app/foodOrder/${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setOrderedData(data);
+            })
+
+    }, [user, reload])
 
     const handleDelete = (id) => {
-
 
         Swal.fire({
             title: "Are you sure you want to delete?",
@@ -29,15 +36,12 @@ const MyOrderedFood = () => {
                 axios.delete(`https://colibri-restaurant-server.vercel.app/foodOrder/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
-                            console.log(res.data);
-                            const remainimg = myOrderedData.filter(myOrder => myOrder._id !== id);
-                            setOrderedData(remainimg);
+                            setReload(!reload)
                             sweetMessage("Successfully Delete")
                         }
                     })
             }
         });
-
 
     }
 
