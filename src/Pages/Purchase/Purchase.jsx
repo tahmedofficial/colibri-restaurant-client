@@ -29,11 +29,13 @@ const Purchase = () => {
 
         if (user?.email === singleFood?.email) {
             errorMessage("You cannot purchase your own food")
+            setShowProcessing(false);
             return
         }
 
         if (quantity === "0") {
             setControlButton(true);
+            setShowProcessing(false);
             errorMessage("This food is not available")
             return
         }
