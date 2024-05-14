@@ -2,11 +2,13 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { Helmet } from "react-helmet-async";
+import { FaGoogle } from "react-icons/fa6";
+
 
 const Login = () => {
 
-    const { loginUser, sweetMessage, errorMessage } = useContext(AuthContext);
-    const locattion = useLocation();
+    const { loginUser, loginWithGoogle, sweetMessage, errorMessage } = useContext(AuthContext);
+    const location = useLocation();
     const navigate = useNavigate();
 
     const handleLogin = (event) => {
@@ -18,11 +20,25 @@ const Login = () => {
             .then(res => {
                 console.log(res.user);
                 sweetMessage("Successfully Login")
-                navigate(locattion?.state ? locattion?.state : "/")
+                navigate(location?.state ? location?.state : "/")
             })
             .catch(error => {
                 errorMessage("Invalid email or password")
                 console.log(error);
+            })
+    }
+
+    const handleGoogleLogin = () => {
+        loginWithGoogle()
+            .then(() => {
+                sweetMessage("Logged in successfully")
+                navigate(location?.state ? location.state : "/")
+            }
+            )
+            .catch(error => {
+                if (error.code === "auth/account-exists-with-different-credential") {
+                    errorMessage("Email address already exists")
+                }
             })
     }
 
@@ -50,6 +66,9 @@ const Login = () => {
                     </Link>
                 </div>
             </form>
+            <div className="flex justify-center mt-10">
+                <button onClick={handleGoogleLogin} className="text-lg bg-primary_btn_color text-white py-2 px-10 rounded-lg flex gap-2 items-center hover:bg-primary_color duration-300"><span><FaGoogle className="text-2xl" /></span>Login With Google</button>
+            </div>
         </div>
     );
 };
