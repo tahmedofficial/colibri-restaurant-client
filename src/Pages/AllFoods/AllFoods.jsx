@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import AllFoodsCard from "../AllFoodsCard/AllFoodsCard";
 import titleImg from "../../assets/images/titleBg.jpg";
@@ -11,6 +11,10 @@ const AllFoods = () => {
 
     const { foods, errorMessage } = useContext(AuthContext);
     const [foodItems, setFoodItems] = useState(foods);
+
+    useEffect(() => {
+        setFoodItems(foods);
+    }, [foods])
 
 
     const handleSearch = (event) => {
@@ -27,7 +31,6 @@ const AllFoods = () => {
                     setFoodItems([]);
                     errorMessage("No data found");
                 }
-                console.log(res.data);
             })
     }
 
@@ -59,7 +62,7 @@ const AllFoods = () => {
 
                 <div className="grid gap-5 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
                     {
-                        foodItems.map(food => <AllFoodsCard key={food._id} food={food}></AllFoodsCard>)
+                        foodItems?.map(food => <AllFoodsCard key={food._id} food={food}></AllFoodsCard>)
                     }
                 </div>
 
