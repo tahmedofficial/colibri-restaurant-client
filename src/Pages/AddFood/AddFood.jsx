@@ -24,7 +24,7 @@ const AddFood = () => {
         const foodData = { email, totalOrders, image, foodName, price, madeBy, foodCategory, description, foodOrigin, quantity };
         console.log(foodData);
 
-        axios.post("https://colibri-restaurant-server.vercel.app/food", foodData)
+        axios.post("http://localhost:5000/food", foodData)
             .then(res => {
                 if (res.data.insertedId) {
                     console.log(res.data);

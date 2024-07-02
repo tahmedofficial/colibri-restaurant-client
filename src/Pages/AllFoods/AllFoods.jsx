@@ -22,7 +22,7 @@ const AllFoods = () => {
         const form = event.target;
         const search = form.search.value;
 
-        axios.get(`https://colibri-restaurant-server.vercel.app/searchedFood?foodItem=${search}`)
+        axios.get(`http://localhost:5000/searchedFood?foodItem=${search}`)
             .then(res => {
                 if (res.data.length > 0) {
                     setFoodItems(res.data);

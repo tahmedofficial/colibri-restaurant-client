@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import auth from "../firebase/firebase.config";
 import { Bounce, toast } from "react-toastify";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 export const AuthContext = createContext(null)
 
@@ -61,7 +62,7 @@ const AuthProviders = ({ children }) => {
     }
 
     useEffect(() => {
-        fetch("https://colibri-restaurant-server.vercel.app/feedback")
+        fetch("http://localhost:5000/feedback")
             .then(res => res.json())
             .then(data => {
                 setFeedbackData(data)
@@ -69,7 +70,7 @@ const AuthProviders = ({ children }) => {
     }, [control])
 
     useEffect(() => {
-        fetch("https://colibri-restaurant-server.vercel.app/food")
+        fetch("http://localhost:5000/food")
             .then(res => res.json())
             .then(data => {
                 setFoods(data)
@@ -80,6 +81,22 @@ const AuthProviders = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
+            // ------------------------------------------
+            const loggedUser = { email: currentUser?.email || user?.email }
+
+            if (currentUser) {
+                axios.post("http://localhost:5000/jwt", loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data);
+                    })
+            }
+            else {
+                axios.post("http://localhost:5000/logout", loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data);
+                    })
+            }
+
         })
         return () => {
             unsubscribe();

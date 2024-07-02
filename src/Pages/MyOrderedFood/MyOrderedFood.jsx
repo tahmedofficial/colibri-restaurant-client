@@ -14,7 +14,7 @@ const MyOrderedFood = () => {
     const [reload, setReload] = useState(false);
 
     useEffect(() => {
-        fetch(`https://colibri-restaurant-server.vercel.app/foodOrder/${user?.email}`)
+        fetch(`http://localhost:5000/foodOrder/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setOrderedData(data);
@@ -34,7 +34,7 @@ const MyOrderedFood = () => {
             confirmButtonText: "Delete"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://colibri-restaurant-server.vercel.app/foodOrder/${id}`)
+                axios.delete(`http://localhost:5000/foodOrder/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             setReload(!reload)

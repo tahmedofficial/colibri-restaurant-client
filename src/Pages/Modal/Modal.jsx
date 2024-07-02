@@ -26,7 +26,7 @@ const Modal = ({ onClose }) => {
         const data = { imageUrl, feedback, name, email };
         console.log(data);
 
-        axios.post("https://colibri-restaurant-server.vercel.app/feedback", data)
+        axios.post("http://localhost:5000/feedback", data)
             .then(res => {
                 if (res.data.insertedId) {
                     form.reset();
